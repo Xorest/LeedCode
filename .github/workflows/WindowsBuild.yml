@@ -1,0 +1,55 @@
+name: Build Windows + Tests
+
+on: 
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+    inputs:
+      cleanup:
+        description: 'Cleanup before build'
+        type: boolean
+        required: true
+        default: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    outputs:
+      buildRunner: ${{runner.name}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          clean: ${{ inputs.cleanup }}
+
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ steps.commonBuildVars.outputs.dotnetVersion }}
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.300' 
+
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResults.trx"
+  
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-windows
+          path: '**/TestResults.trx'
