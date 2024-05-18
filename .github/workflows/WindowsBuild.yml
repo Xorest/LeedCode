@@ -14,7 +14,7 @@ on:
         default: true
 
 jobs:
-  build-job:
+  build:
     runs-on: windows-latest
     outputs:
       buildRunner: ${{runner.name}}
@@ -47,10 +47,15 @@ jobs:
 
       - name: Build solution
         run: dotnet build --configuration Release --no-restore
-
+        
+  test-windows:
+    runs-on: windows-latest
+    needs: build
+    
+    steps:
       - name: Run tests
         run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResults.trx"
-
+  
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
