@@ -45,31 +45,6 @@ jobs:
       - name: Build solution
         run: dotnet build --configuration Release --no-restore
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-windows
-          path: '**/bin/Release'
-        
-  test-windows:
-    runs-on: windows-latest
-    needs: build
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-windows
-          path: build
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.300'
-      
       - name: Run tests
         run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResults.trx"
   
@@ -78,14 +53,3 @@ jobs:
         with:
           name: test-results-windows
           path: '**/TestResults.trx'
-
-  cleanup:
-    runs-on: windows-latest
-    needs: test-windows
-
-    steps:
-      - name: Delete artifacts
-        uses: actions/delete-artifact@v3
-        with:
-          name: test-results-windows
-
