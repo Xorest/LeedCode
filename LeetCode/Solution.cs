@@ -6,9 +6,53 @@ public static class Solution
 {
     #region Metods
 
-    public static ListNode DoubleIt(ListNode head) //todo
+    public static ListNode DoubleItDFC(ListNode head)
     {
-        return null;
+        var root = new ListNode(0);
+        root.next = head;
+
+        _ = DFCforListNode(root);
+
+        return root.val == 0 ? head : root;
+    }
+
+    private static int DFCforListNode(ListNode? head)
+    {
+        if (head == null)
+            return 0;
+
+        var carry = DFCforListNode(head.next);
+        var result = (head.val << 1) + carry;
+        head.val = result % 10;
+
+        return result / 10;
+    }
+
+
+    public static ListNode DoubleIt(ListNode head)
+    {
+        var stack = new Stack<ListNode>();
+        var current = head;
+
+        while (current != null)
+        {
+            stack.Push(current);
+            current = current.next;
+        }
+
+        var needAdd = 0;
+        
+        while (stack.Count != 0)
+        {
+            current = stack.Pop();
+            var temp = (current.val << 1) + needAdd;
+            needAdd = temp >= 10 ? 1 : 0;
+            current.val = temp % 10;
+        }
+
+        var root = needAdd > 0 ? new ListNode(needAdd) {next = head} : head;
+        
+        return root;
     }
     
     public static ListNode RemoveNodes(ListNode head)

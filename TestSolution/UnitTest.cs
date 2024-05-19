@@ -66,7 +66,7 @@ public class Tests
         Assert.That(result, Is.EqualTo(expected));
     }
 
-    [Test(Description = "RemoveNodes")]
+    [Test(Description = "Remove Nodes")]
     [TestCase(new[] {5,2,13,3,8}, new int[] {13,8})]
     [TestCase(new[] {1,1,1,1}, new int[] {1,1,1,1})]
     [TestCase(new[] {998,112,660,961,943}, new int[] {998,961,943})]
@@ -78,6 +78,28 @@ public class Tests
     {
         var root = ListNode.GetListNodeByArray(listValues);
         var result = Solution.RemoveNodes(root);
+        var array = ListNode.GetArrayByListNode(result);
+        Assert.That(array, Is.EqualTo(expected));
+    }
+
+    [Test(Description = "DoubleIt Nodes")]
+    [TestCase(new[] { 1,8,9 }, new[] { 3,7,8 })]
+    [TestCase(new[] { 3,4,5,4,2,5,5,9,9,9 }, new[] { 6,9,0,8,5,1,1,9,9,8 })]
+    public void TestDubleItNode(int[] listValues, int[] expected)
+    {
+        var root = ListNode.GetListNodeByArray(listValues);
+        var result = Solution.DoubleIt(root);
+        var array = ListNode.GetArrayByListNode(result);
+        Assert.That(array, Is.EqualTo(expected));
+    }
+    
+    [Test(Description = "DoubleItDFC Nodes")]
+    [TestCase(new[] { 1,8,9 }, new[] { 3,7,8 })]
+    [TestCase(new[] { 3,4,5,4,2,5,5,9,9,9 }, new[] { 6,9,0,8,5,1,1,9,9,8 })]
+    public void TestDoubleItDFCNode(int[] listValues, int[] expected)
+    {
+        var root = ListNode.GetListNodeByArray(listValues);
+        var result = Solution.DoubleItDFC(root);
         var array = ListNode.GetArrayByListNode(result);
         Assert.That(array, Is.EqualTo(expected));
     }
