@@ -1,11 +1,34 @@
-using System.Net;
 
 namespace ConsoleApp1;
 
 public static class Solution
 {
     #region Metods
+    
+    public static long MaximumValueSum(int[] nums, int k, int[][] edges)
+    {
+        var memo = new long[nums.Length][];
+        
+        for (var i = 0; i < nums.Length; i++) 
+            memo[i] = [-1, -1];
+        
+        return MaxSumOfNodes(0, 1, nums, k, memo);
+    }
 
+    private static long MaxSumOfNodes(int index, int isEven, int[] nums, int k, long[][] memo)
+    {
+        if (index == nums.Length)
+            return isEven == 1 ? 0 : long.MinValue;
+        
+        if (memo[index][isEven] != -1)
+            return memo[index][isEven];
+
+        var noXorDone = nums[index] + MaxSumOfNodes(index + 1, isEven, nums, k, memo);
+        var xorDone = (nums[index] ^ k) + MaxSumOfNodes(index + 1, isEven ^ 1, nums, k, memo);
+
+        return memo[index][isEven] = Math.Max(xorDone, noXorDone);
+    }
+    
     public static ListNode DoubleItDFC(ListNode head)
     {
         var root = new ListNode(0);
