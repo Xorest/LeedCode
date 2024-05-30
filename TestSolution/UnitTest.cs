@@ -1,6 +1,5 @@
-using System.Security.Cryptography.X509Certificates;
+using System.Collections;
 using ConsoleApp1;
-using NUnit.Framework.Internal;
 using ListNode = ConsoleApp1.Solution.ListNode;
 
 namespace TestSolution;
@@ -102,5 +101,72 @@ public class Tests
         var result = Solution.DoubleItDFC(root);
         var array = ListNode.GetArrayByListNode(result);
         Assert.That(array, Is.EqualTo(expected));
+    }
+    
+    
+    public static IEnumerable TestCasesMaximumValueSum
+    {
+        get
+        {
+            yield return new TestCaseData(
+                new[] {1,2,1},
+                3,
+                new[] 
+                {
+                    new[] {0,1},
+                    new[] {0,2},
+                },
+                6
+            );
+        }
+    }
+
+    public static IEnumerable TestCasesMaximumValueSum1
+    {
+        get
+        {
+            yield return new TestCaseData(
+                new[] {24,78,1,97,44},
+                6,
+                new[] 
+                {
+                    new[] {0,2},
+                    new[] {1,2},
+                    new[] {4,2},
+                    new[] {3,4},
+                },
+                260
+            );
+        }
+    }
+    
+    public static IEnumerable TestCasesMaximumValueSum2
+    {
+        get
+        {
+            yield return new TestCaseData(
+                new[] {78,43,92,97,95,94},
+                6,
+                new[] 
+                {
+                    new[] {1,2},
+                    new[] {3,0},
+                    new[] {4,0},
+                    new[] {0,1},
+                    new[] {1,5},
+                },
+                507
+            );
+        }
+    }
+    
+    [Test (Description="Find the Maximum Sum of Node Values")]
+    [TestCaseSource(nameof(TestCasesMaximumValueSum))]
+    [TestCaseSource(nameof(TestCasesMaximumValueSum1))]
+    [TestCaseSource(nameof(TestCasesMaximumValueSum2))]
+    public void TestMaximumValueSum(int[] nums, int k, int[][] edges, int expected)
+    {
+        var result = Solution.MaximumValueSum(nums, k, edges); 
+        Assert.AreEqual(expected, result);
     }
 }
