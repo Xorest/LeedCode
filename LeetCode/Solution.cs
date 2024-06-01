@@ -7,13 +7,13 @@ public static class Solution
 
     public static bool IsSameTree_100(TreeNode? p, TreeNode? q)
     {
-        if (p?.val != q?.val){ 
-            return false;
-        } 
-        if (p == null || q == null)
+        if (p == null && q == null)
+            return true;
+
+        if (p?.val != q?.val)
             return false;
 
-        return IsSameTree_100(p.left, q.left) && IsSameTree_100(p.right, q.right);
+        return IsSameTree_100(p?.left, q?.left) && IsSameTree_100(p?.right, q?.right);
     }
     
     public static int ScoreOfString_3110(string str)
