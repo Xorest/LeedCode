@@ -169,4 +169,13 @@ public class Tests
         var result = Solution.MaximumValueSum(nums, k, edges); 
         Assert.AreEqual(expected, result);
     }
+
+    [Test(Description = "Score Of String")]
+    [TestCase( "hello", 13)]
+    [TestCase( "zaz", 50)]
+    public void TestScoreOfString_3110(string str, int expected)
+    {
+        var result = Solution.ScoreOfString_3110(str);
+        Assert.That(expected, Is.EqualTo(result));
+    }
 }

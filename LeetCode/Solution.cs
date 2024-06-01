@@ -4,6 +4,24 @@ namespace ConsoleApp1;
 public static class Solution
 {
     #region Metods
+
+    public static int ScoreOfString_3110(string str)
+    {
+        var result = 0;
+        
+        for (var s = 0;  s < str.Length - 1; s++)
+        {
+            var left = str[s];
+            var right = str[s + 1];
+            
+            if (left == right)
+                continue;
+            
+            result += Math.Abs(left - right);
+        }
+        
+        return result;
+    }
     
     public static long MaximumValueSum(int[] nums, int k, int[][] edges)
     {
