@@ -5,6 +5,17 @@ public static class Solution
 {
     #region Metods
 
+    public static bool IsSameTree_100(TreeNode? p, TreeNode? q)
+    {
+        if (p == null && q == null)
+            return true;
+
+        if (p?.val != q?.val)
+            return false;
+
+        return IsSameTree_100(p?.left, q?.left) && IsSameTree_100(p?.right, q?.right);
+    }
+    
     public static int ScoreOfString_3110(string str)
     {
         var result = 0;
@@ -338,7 +349,14 @@ public static class Solution
         Addition,
         Subtraction,
     }
-    
+
+    public class TreeNode(int val = 0, TreeNode? left = null, TreeNode? right = null)
+    {
+        public int val = val;
+        public TreeNode? left = left;
+        public TreeNode? right = right;
+    }
+
     public class ListNode 
     {
         public int val;
