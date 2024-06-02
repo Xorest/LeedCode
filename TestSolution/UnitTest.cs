@@ -7,9 +7,7 @@ namespace TestSolution;
 public class Tests
 {
     [SetUp]
-    public void Setup()
-    {
-    }
+    public void Setup() { }
 
     [Test(Description = "Longest Substring")]
     [TestCase("abcbada", 4)]
@@ -160,7 +158,7 @@ public class Tests
         }
     }
     
-    [Test (Description="Find the Maximum Sum of Node Values")]
+    [Test(Description="Find the Maximum Sum of Node Values")]
     [TestCaseSource(nameof(TestCasesMaximumValueSum))]
     [TestCaseSource(nameof(TestCasesMaximumValueSum1))]
     [TestCaseSource(nameof(TestCasesMaximumValueSum2))]
@@ -177,5 +175,14 @@ public class Tests
     {
         var result = Solution.ScoreOfString_3110(str);
         Assert.That(expected, Is.EqualTo(result));
+    }
+
+    [Test(Description = "Reverse String")]
+    [TestCase(new [] {'h','e','l','l','o'}, new [] {'o','l','l','e','h'})]
+    [TestCase(new [] {'H','a','n','n','a','h'}, new [] {'h','a','n','n','a', 'H'})]
+    public void TestReverseString_344(char[] str, char[]  expected)
+    {
+        Solution.ReverseString_344(str);
+        Assert.That(str, Is.EqualTo(expected));
     }
 }

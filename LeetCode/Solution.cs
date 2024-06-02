@@ -5,6 +5,19 @@ public static class Solution
 {
     #region Metods
 
+    public static void ReverseString_344(char[] s)
+    {
+        var leftIndex = 0;
+        var rightIndex = s.Length - 1;
+
+        while (leftIndex < rightIndex)
+        {
+            (s[leftIndex], s[rightIndex]) = (s[rightIndex], s[leftIndex]);
+            leftIndex++;
+            rightIndex--;
+        }
+    }
+    
     public static bool IsSameTree_100(TreeNode? p, TreeNode? q)
     {
         if (p == null && q == null)
