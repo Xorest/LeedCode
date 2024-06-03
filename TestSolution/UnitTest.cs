@@ -185,4 +185,14 @@ public class Tests
         Solution.ReverseString_344(str);
         Assert.That(str, Is.EqualTo(expected));
     }
+
+    [Test(Description = "2486. Append Characters to String to Make Subsequence")]
+    [TestCase("coaching", "coding", 4)]
+    [TestCase("abcde", "a", 0)]
+    [TestCase("z", "abcde", 5)]
+    public void TestAppendCharacters_2486(string s, string t, int expected)
+    {
+        var result = Solution.AppendCharacters_2486(s, t);
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }

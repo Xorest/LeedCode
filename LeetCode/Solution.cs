@@ -5,6 +5,22 @@ public static class Solution
 {
     #region Metods
 
+    public static int AppendCharacters_2486(string s, string t)
+    {
+        var index = 0;
+
+        foreach (var str in s)
+        {
+            if (index > t.Length - 1)
+                return 0;
+
+            if (t[index] == str)
+                index++;
+        }
+
+        return t.Length - index;
+    }
+    
     public static void ReverseString_344(char[] s)
     {
         var leftIndex = 0;
