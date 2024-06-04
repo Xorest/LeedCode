@@ -5,6 +5,32 @@ public static class Solution
 {
     #region Metods
 
+    public static int LongestPalindrome_409(string s)
+    {
+        var result = 0;
+
+        if (s.Length > 0)
+            result++;
+
+        var dict = new Dictionary<char, int>();
+
+        foreach (var c in s)
+        {
+            if (!dict.TryAdd(c, 1))
+                dict[c]++;
+        }
+
+        foreach (var (c, i) in dict)
+        {
+            result += (i / 2) * 2;
+        }
+        
+        if (result > s.Length)
+            result = s.Length;
+        
+        return result;
+    }
+    
     public static int AppendCharacters_2486(string s, string t)
     {
         var index = 0;
