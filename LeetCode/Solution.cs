@@ -5,6 +5,40 @@ public static class Solution
 {
     #region Metods
 
+    public static bool IsNStraightHand_846(int[] hand, int groupSize)
+    {
+        if (hand.Length % groupSize != 0)
+            return false;
+        
+        var cardCount = new Dictionary<int, int>();
+        
+        foreach (var card in hand)
+        {
+            cardCount.TryAdd(card, 0);
+            cardCount[card]++;
+        }
+
+        Array.Sort(hand);
+        
+        foreach (var card in hand)
+        {
+            if (cardCount[card] == 0)
+                continue;
+
+            for (var i = 0; i < groupSize; i++)
+            { 
+                var currentCard = card + i;
+                
+                if (!cardCount.TryGetValue(currentCard, out var value) || value == 0)
+                    return false;
+                
+                cardCount[currentCard] = --value;
+            }
+        }
+
+        return true;
+    }
+    
     public static IList<string> CommonChars_1002(string[] words)
     {
         var minFreq = new int[26];
@@ -14,15 +48,11 @@ public static class Solution
         {
             var freq = new int[26];
 
-            foreach (var c in word)
-            {
+            foreach (var c in word) 
                 freq[c - 'a']++;
-            }
             
-            for (var i = 0; i < 26; i++)
-            {
+            for (var i = 0; i < 26; i++) 
                 minFreq[i] = Math.Min(minFreq[i], freq[i]);
-            }
         }
         
         var result = new List<string>();
