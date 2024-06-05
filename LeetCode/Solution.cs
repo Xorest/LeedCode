@@ -5,6 +5,66 @@ public static class Solution
 {
     #region Metods
 
+    public static IList<string> CommonChars_1002(string[] words)
+    {
+        var minFreq = new int[26];
+        Array.Fill(minFreq, int.MaxValue);
+        
+        foreach (var word in words)
+        {
+            var freq = new int[26];
+
+            foreach (var c in word)
+            {
+                freq[c - 'a']++;
+            }
+            
+            for (var i = 0; i < 26; i++)
+            {
+                minFreq[i] = Math.Min(minFreq[i], freq[i]);
+            }
+        }
+        
+        var result = new List<string>();
+        
+        for (var i = 0; i < 26; i++)
+        {
+            for (var j = 0; j < minFreq[i]; j++)
+            {
+                var c = (char)(i + 'a');
+                result.Add(c.ToString());
+            }
+        }
+
+        return result;
+    }
+    
+    public static int LongestPalindrome_409(string s)
+    {
+        var result = 0;
+
+        if (s.Length > 0)
+            result++;
+
+        var dict = new Dictionary<char, int>();
+
+        foreach (var c in s)
+        {
+            if (!dict.TryAdd(c, 1))
+                dict[c]++;
+        }
+
+        foreach (var (c, i) in dict)
+        {
+            result += (i / 2) * 2;
+        }
+        
+        if (result > s.Length)
+            result = s.Length;
+        
+        return result;
+    }
+    
     public static int AppendCharacters_2486(string s, string t)
     {
         var index = 0;

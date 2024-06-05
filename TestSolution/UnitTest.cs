@@ -195,4 +195,23 @@ public class Tests
         var result = Solution.AppendCharacters_2486(s, t);
         Assert.That(result, Is.EqualTo(expected));
     }
+
+    [Test(Description = "409. Longest Palindrome")]
+    [TestCase("abccccdd", 7)]
+    [TestCase("a", 1)]
+    [TestCase("bb", 2)]
+    public void TestLongestPalindrome_409(string s, int expected)
+    {
+        var result = Solution.LongestPalindrome_409(s);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test(Description = "1002. Find Common Characters")]
+    [TestCase(new [] {"bella","label","roller"}, new [] {"e","l","l"})]
+    [TestCase(new [] {"cool","lock","cook"}, new [] {"c","o"})]
+    public void TestCommonChars_1002(string[] words, IList<string> expected)
+    {
+        var result = Solution.CommonChars_1002(words);
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }
