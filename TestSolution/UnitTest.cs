@@ -9,6 +9,19 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "846. Hand of Straights")]
+    [TestCase(new [] {1,2,3,6,2,3,4,7,8}, 3, true)]
+    [TestCase(new [] {1,2,3,4,5}, 4, false)]
+    [TestCase(new [] {8,10,12}, 3, false)]
+    [TestCase(new [] {1,1,2,2,3,3}, 2, false)]
+    [TestCase(new [] {1,1,2,2,3,3}, 3, true)]
+    [TestCase(new [] {34,80,89,15,38,69,19,17,97,98,26,77,8,31,79,70,103,3,13,21,81,53,33,14,60,68,33,59,84,23,97,90,76,82,66,83,23,22,16,18,98,25,16,61,84,100,4,68,101,25,23,9,10,55,2,67,39,52,102,99,40,11,83,24,81,53,96,23,13,24,99,67,22,51,31,58,78,88,5,15,24,32,81,91,96,16,54,22,56,69,14,82,32,34,83,24,37,82,54,21}, 4, true)]
+    public void TestIsNStraightHand_846(int[] hand, int groupSize, bool expected)
+    {
+        var result = Solution.IsNStraightHand_846(hand, groupSize);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+    
     [Test(Description = "Longest Substring")]
     [TestCase("abcbada", 4)]
     [TestCase("axbxcxd", 3)]
