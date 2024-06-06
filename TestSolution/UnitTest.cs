@@ -9,6 +9,16 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "648. Replace Words")]
+    [TestCase(new [] {"cat","bat","rat"}, "the cattle was rattled by the battery", "the cat was rat by the bat")]
+    [TestCase(new [] {"a","b","c"}, "aadsfasf absbs bbab cadsfafs", "a a b c")]
+    [TestCase(new [] {"a", "aa", "aaa", "aaaa"}, "a aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa", "a a a a a a a a bbb baba a")]
+    public void TestReplaceWords_648(IList<string> dictionary, string sentence, string expected)
+    {
+        var result = Solution.ReplaceWords_648(dictionary, sentence);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
     [Test (Description = "846. Hand of Straights")]
     [TestCase(new [] {1,2,3,6,2,3,4,7,8}, 3, true)]
     [TestCase(new [] {1,2,3,4,5}, 4, false)]
