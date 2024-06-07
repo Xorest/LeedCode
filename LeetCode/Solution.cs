@@ -5,6 +5,21 @@ public static class Solution
 {
     #region Metods
 
+    public static string ReplaceWords_648(IList<string> dictionary, string sentence)
+    {
+        var roots = dictionary.OrderBy(x => x).ToList();
+        var words = sentence.Split(" ");
+
+        for (var i = 0; i < words.Length; i++)
+        {
+            var value = roots.Find(s => words[i].StartsWith(s));
+            if (value != null) 
+                words[i] = value;
+        }
+        
+        return string.Join(" ", words);
+    }
+    
     public static bool IsNStraightHand_846(int[] hand, int groupSize)
     {
         if (hand.Length % groupSize != 0)
