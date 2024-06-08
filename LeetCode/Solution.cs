@@ -5,6 +5,27 @@ public static class Solution
 {
     #region Metods
 
+    public static bool CheckSubarraySum_523(int[] nums, int k)
+    {
+        var remainderDict = new Dictionary<int, int>();
+        remainderDict[0] = -1; 
+        var prefixSum = 0;
+        
+        for (var i = 0; i < nums.Length; i++) 
+        {
+            prefixSum += nums[i];
+            var remainder = prefixSum % k;
+
+            if (remainderDict.TryAdd(remainder, i)) 
+                continue;
+            
+            if (i - remainderDict[remainder] > 1)
+                return true;
+        }
+        
+        return false;
+    }
+
     public static string ReplaceWords_648(IList<string> dictionary, string sentence)
     {
         var roots = dictionary.OrderBy(x => x).ToList();

@@ -9,6 +9,17 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "523. Continuous Subarray Sum")]
+    [TestCase(new [] {23,2,4,6,7}, 6, true)]
+    [TestCase(new [] {23,2,6,4,7}, 6, true)]
+    [TestCase(new [] {23,2,6,4,7}, 13, false)]
+    [TestCase(new [] {23,2,4,6,6}, 7, true)]
+    public void TestCheckSubarraySum_523(int[] nums, int k, bool expected)
+    {
+        var result = Solution.CheckSubarraySum_523(nums, k);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
     [Test (Description = "648. Replace Words")]
     [TestCase(new [] {"cat","bat","rat"}, "the cattle was rattled by the battery", "the cat was rat by the bat")]
     [TestCase(new [] {"a","b","c"}, "aadsfasf absbs bbab cadsfafs", "a a b c")]
