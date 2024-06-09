@@ -5,6 +5,12 @@ public static class Solution
 {
     #region Metods
 
+    public static int HeightChecker_1051(int[] heights)
+    {
+        var order = heights.OrderBy(h => h).ToList();
+        return order.Where((t, i) => t != heights[i]).Count();
+    }
+    
     public static int SubarraysDivByK_974(int[] nums, int k)
     {
         var prefixMod = 0;
