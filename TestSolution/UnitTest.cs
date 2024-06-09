@@ -9,6 +9,14 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "974. Subarray Sums Divisible by K")]
+    [TestCase(new [] {4,5,0,-2,-3,1}, 5, 7)]
+    public void TestSubarraysDivByK_974(int[] nums, int k, int expected)
+    {
+        var result = Solution.SubarraysDivByK_974(nums, k);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
     [Test (Description = "523. Continuous Subarray Sum")]
     [TestCase(new [] {23,2,4,6,7}, 6, true)]
     [TestCase(new [] {23,2,6,4,7}, 6, true)]

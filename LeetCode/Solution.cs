@@ -5,6 +5,24 @@ public static class Solution
 {
     #region Metods
 
+    public static int SubarraysDivByK_974(int[] nums, int k)
+    {
+        var prefixMod = 0;
+        var result = 0;
+
+        var modGroups = new int[k];
+        modGroups[0] = 1;
+
+        foreach (var num in nums)
+        {
+            prefixMod = (prefixMod + num % k + k) % k;
+            result += modGroups[prefixMod];
+            modGroups[prefixMod]++;
+        }    
+
+        return result;
+    }
+    
     public static bool CheckSubarraySum_523(int[] nums, int k)
     {
         var remainderDict = new Dictionary<int, int>();
