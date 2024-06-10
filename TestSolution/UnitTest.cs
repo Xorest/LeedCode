@@ -9,6 +9,15 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "1122. Relative Sort Array")]
+    [TestCase(new int []{2,3,1,3,2,4,6,7,9,2,19}, new int[] {2,1,4,3,9,6}, new int[] {2,2,2,1,4,3,3,9,6,7,19})]
+    [TestCase(new int []{28,6,22,8,44,17}, new int[] {22,28,8,6}, new int[] {22,28,8,6,17,44})]
+    public void RelativeSortArray_1122(int[] arr1, int[] arr2, int[] expected)
+    {
+        var result = Solution.RelativeSortArray_1122(arr1, arr2);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+    
     [Test (Description = "1051. Height Checker")]
     [TestCase(new [] {1,1,4,2,1,3}, 3)]
     [TestCase(new [] {5,1,2,3,4}, 5)]
