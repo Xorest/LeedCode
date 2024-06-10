@@ -9,6 +9,16 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "1051. Height Checker")]
+    [TestCase(new [] {1,1,4,2,1,3}, 3)]
+    [TestCase(new [] {5,1,2,3,4}, 5)]
+    [TestCase(new [] {1,2,3,4,5}, 0)]
+    public void TestHeightChecker_1051(int[] heights, int expected)
+    {
+        var result = Solution.HeightChecker_1051(heights);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
     [Test (Description = "974. Subarray Sums Divisible by K")]
     [TestCase(new [] {4,5,0,-2,-3,1}, 5, 7)]
     public void TestSubarraysDivByK_974(int[] nums, int k, int expected)
