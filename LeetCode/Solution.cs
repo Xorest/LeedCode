@@ -5,6 +5,29 @@ public static class Solution
 {
     #region Metods
 
+    public static int[] RelativeSortArray_1122(int[] arr1, int[] arr2) 
+    {
+        var temp = arr2.ToDictionary(a => a, a => 0);
+        var end = new List<int>();
+        foreach (var a in arr1)
+        {
+            if (temp.ContainsKey(a)) 
+                temp[a]++;
+            else
+                end.Add(a);
+        }
+
+        end.Sort();
+        var start = new List<int>();
+
+        foreach (var (n, c) in temp)
+            for (var i = 0; i < c; i++) 
+                start.Add(n);
+        
+        start.AddRange(end);
+        return start.ToArray();
+    }
+    
     public static int HeightChecker_1051(int[] heights)
     {
         var order = heights.OrderBy(h => h).ToList();
