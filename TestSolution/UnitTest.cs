@@ -9,6 +9,16 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "2037. Minimum Number of Moves to Seat Everyone")]
+    [TestCase(new[]{3,1,5}, new int[]{2,7,4}, 4)]
+    [TestCase(new[]{4,1,5,9}, new int[]{1,3,2,6}, 7)]
+    [TestCase(new[]{2,2,6,6}, new int[]{1,3,2,6}, 4)]
+    public void TestMinMovesToSeat_2037(int[] seats, int[] students, int expected)
+    {
+        var result = Solution.MinMovesToSeat_2037(seats, students);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+    
     [Test (Description = "1122. Relative Sort Array")]
     [TestCase(new int []{2,3,1,3,2,4,6,7,9,2,19}, new int[] {2,1,4,3,9,6}, new int[] {2,2,2,1,4,3,3,9,6,7,19})]
     [TestCase(new int []{28,6,22,8,44,17}, new int[] {22,28,8,6}, new int[] {22,28,8,6,17,44})]
