@@ -11,13 +11,6 @@ public static class Solution
         Array.Sort(students);
 
         return seats.Select((t, i) => Math.Abs(t - students[i])).Sum();   
-        
-        // var result = 0;
-        //
-        // for (var i = 0; i < seats.Length; i++) 
-        //     result += Math.Abs(seats[i] - students[i]);
-        //
-        // return result;
     }
     
     public static int[] RelativeSortArray_1122(int[] arr1, int[] arr2) 
