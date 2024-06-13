@@ -5,6 +5,21 @@ public static class Solution
 {
     #region Metods
 
+    public static int MinMovesToSeat_2037(int[] seats, int[] students) 
+    {
+        Array.Sort(seats);
+        Array.Sort(students);
+
+        return seats.Select((t, i) => Math.Abs(t - students[i])).Sum();   
+        
+        // var result = 0;
+        //
+        // for (var i = 0; i < seats.Length; i++) 
+        //     result += Math.Abs(seats[i] - students[i]);
+        //
+        // return result;
+    }
+    
     public static int[] RelativeSortArray_1122(int[] arr1, int[] arr2) 
     {
         var temp = arr2.ToDictionary(a => a, a => 0);
