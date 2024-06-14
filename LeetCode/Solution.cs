@@ -5,6 +5,30 @@ public static class Solution
 {
     #region Metods
 
+    public static int MinIncrementForUnique_945(int[] nums) 
+    {
+        Array.Sort(nums);
+
+        var lastNums = int.MinValue;
+        var result = 0;
+        
+        foreach (var n in nums)
+        {
+            if (lastNums < n)
+            {
+                lastNums = n;
+            }
+            else
+            {
+                var delta = lastNums - n + 1;
+                result += delta;
+                lastNums = n + delta;
+            }
+        }
+
+        return result;
+    }
+    
     public static int MinMovesToSeat_2037(int[] seats, int[] students) 
     {
         Array.Sort(seats);

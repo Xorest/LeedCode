@@ -9,6 +9,15 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "945. Minimum Increment to Make Array Unique")]
+    [TestCase(new[]{1,2,2}, 1)]
+    [TestCase(new[]{3,2,1,2,1,7}, 6)]
+    public void TestMinIncrementForUnique_945(int[] nums, int expected)
+    {
+        var result = Solution.MinIncrementForUnique_945(nums);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
     [Test (Description = "2037. Minimum Number of Moves to Seat Everyone")]
     [TestCase(new[]{3,1,5}, new int[]{2,7,4}, 4)]
     [TestCase(new[]{4,1,5,9}, new int[]{1,3,2,6}, 7)]
