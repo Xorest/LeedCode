@@ -5,6 +5,36 @@ public static class Solution
 {
     #region Metods
 
+    public static int FindMaximizedCapital_502(int k, int w, int[] profits, int[] capital)
+    {
+        var n = profits.Length;
+        var projects = new List<(int capital, int profit)>();
+        
+        for (var i = 0; i < n; i++) 
+            projects.Add((capital[i], profits[i]));
+        
+        projects.Sort((a, b) => a.capital.CompareTo(b.capital));
+        
+        var maxProfitHeap = new PriorityQueue<int, int>(Comparer<int>.Create((a, b) => b.CompareTo(a)));
+        var projectIndex = 0;
+
+        for (var i = 0; i < k; i++) 
+        {
+            while (projectIndex < n && projects[projectIndex].capital <= w) 
+            {
+                maxProfitHeap.Enqueue(projects[projectIndex].profit, projects[projectIndex].profit);
+                projectIndex++;
+            }
+            
+            if (maxProfitHeap.Count == 0)
+                break;
+            
+            w += maxProfitHeap.Dequeue();
+        }
+        
+        return w;
+    }
+    
     public static int MinIncrementForUnique_945(int[] nums) 
     {
         Array.Sort(nums);
