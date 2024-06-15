@@ -9,6 +9,18 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "502. IPO")]
+    [TestCase(2,0, new int[]{1,2,3}, new int[]{0,1,1}, 4)]
+    [TestCase(3,0, new int[]{1,2,3}, new int[]{0,1,2}, 6)]
+    [TestCase(10,0, new int[]{1,2,3}, new int[]{0,1,2}, 6)]
+    [TestCase(1,0, new int[]{1,2,3}, new int[]{1,1,2}, 0)]
+    [TestCase(1,2, new int[]{1,2,3}, new int[]{1,1,2}, 5)]
+    public void TestFindMaximizedCapital_502(int k, int w, int[] profits, int[] capital, int expected)
+    {
+        var result = Solution.FindMaximizedCapital_502(k, w, profits, capital);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
     [Test (Description = "945. Minimum Increment to Make Array Unique")]
     [TestCase(new[]{1,2,2}, 1)]
     [TestCase(new[]{3,2,1,2,1,7}, 6)]
