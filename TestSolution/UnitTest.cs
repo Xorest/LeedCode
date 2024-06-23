@@ -9,6 +9,16 @@ public class Tests
     [SetUp]
     public void Setup() { }
 
+    [Test (Description = "1248. Count Number of Nice Subarrays")]
+    [TestCase(new []{1,1,2,1,1}, 3, 2)]
+    [TestCase(new []{2,4,6}, 1, 0)]
+    [TestCase(new []{2,2,2,1,2,2,1,2,2,2}, 2, 16)]
+    public void TestNumberOfSubarrays_1248(int[] nums, int k, int expected)
+    {
+        var result = Solution.NumberOfSubarrays_1248(nums, k);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+    
     [Test (Description = "502. IPO")]
     [TestCase(2,0, new int[]{1,2,3}, new int[]{0,1,1}, 4)]
     [TestCase(3,0, new int[]{1,2,3}, new int[]{0,1,2}, 6)]

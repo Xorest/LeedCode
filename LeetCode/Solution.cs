@@ -5,6 +5,55 @@ public static class Solution
 {
     #region Metods
 
+    public static int NumberOfSubarrays_1248(int[] nums, int k)
+    {
+        var count = 0;
+        var currentOddCount = 0;
+        var prefixCounts = new Dictionary<int, int>
+        {
+            [0] = 1
+        };
+
+        foreach (var num in nums)
+        {
+            if (num % 2 != 0) 
+                currentOddCount++;
+
+            if (prefixCounts.ContainsKey(currentOddCount - k)) 
+                count += prefixCounts[currentOddCount - k];
+
+            if (prefixCounts.TryGetValue(currentOddCount, out var value))
+                prefixCounts[currentOddCount] = ++value;
+            else
+                prefixCounts[currentOddCount] = 1;
+        }
+
+        return count;
+    }
+    
+    public static int MinPatches(int[] nums, int n)
+    {
+        var patches = 0;
+        long miss = 1;
+        var i = 0;
+
+        while (miss <= n)
+        {
+            if (i < nums.Length && nums[i] <= miss)
+            {
+                miss += nums[i];
+                i++;
+            }
+            else
+            {
+                miss += miss;
+                patches++;
+            }
+        }
+
+        return patches;
+    }
+
     public static int FindMaximizedCapital_502(int k, int w, int[] profits, int[] capital)
     {
         var n = profits.Length;
