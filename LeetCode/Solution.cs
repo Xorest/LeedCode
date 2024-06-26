@@ -5,6 +5,52 @@ public static class Solution
 {
     #region Metods
 
+    public static TreeNode BalanceBST_1382(TreeNode root)
+    {
+        var nodes = new List<int>();
+        FillList(root, nodes);
+        
+        return CreateTree(nodes, 0, nodes.Count - 1);
+        
+        static void FillList (TreeNode? node, List<int> nodes)
+        {
+            if (node is null)
+                return;
+            FillList(node.left, nodes);
+            nodes.Add(node.val);
+            FillList(node.right, nodes);
+        }
+
+        TreeNode? CreateTree(IList<int> nodes, int start, int end)
+        {
+            if (start > end) 
+                return null;
+
+            var mid = (start + end) / 2;
+            var main = new TreeNode(nodes[mid]);
+            main.left = CreateTree(nodes, start, mid - 1);
+            main.right = CreateTree(nodes, mid + 1, end);
+
+            return main;
+        }
+    }
+
+
+
+    private static TreeNode foo(TreeNode root)
+    {
+        if (root is { right: not null, left: null })
+        {
+            root.left = root;
+            root.val = root.val;
+            root.right = root.right.right;
+        }
+
+        return root;
+
+
+    }
+
     public static int NumberOfSubarrays_1248(int[] nums, int k)
     {
         var count = 0;
